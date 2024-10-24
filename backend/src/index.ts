@@ -8,7 +8,7 @@ dotenv.config();
 
 const app: Application = express();
 
-const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 8000;
+const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 5000;
 const NODE_ENV = process.env.NODE_ENV || "development";
 
 app.use(express.json());

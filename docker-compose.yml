@@ -1,0 +1,40 @@
+services:
+  backend-dev:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile.backend
+      target: dev
+    volumes:
+      - ./backend:/app
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=development
+      - MONGO_URI=mongodb://db:27017/postProject
+    depends_on:
+      - db
+
+  frontend-dev:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile.frontend
+      target: dev
+    volumes:
+      - ./frontend:/app
+    ports:
+      - "5173:3000"
+    environment:
+      - NODE_ENV=development
+      - VITE_API_URL=http://localhost:8000/api
+    depends_on:
+      - backend-dev
+
+  db:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mern_db:/data/db
+
+volumes:
+  mern_db:

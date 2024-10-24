@@ -15,7 +15,9 @@ RUN npm install
 
 COPY backend/ .
 
-CMD [ "npx", "nodemon", "dist/index.js" ]
+# Start the app in development
+
+CMD [ "npm", "run", "dev" ]
 
 
 ####### Production stage
